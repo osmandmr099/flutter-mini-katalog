@@ -1,19 +1,34 @@
 import 'package:flutter/material.dart';
 import '../components/custom_card.dart';
-import '../models/product_model.dart'; // globalCart artık bu dosyanın içinden geliyor!
+import '../models/product_model.dart';
+import '../services/cart_service.dart';
 
 class CartScreen extends StatefulWidget {
-  const CartScreen({Key? key}) : super(key: key);
+  const CartScreen({super.key});
 
   @override
   State<CartScreen> createState() => _CartScreenState();
 }
 
 class _CartScreenState extends State<CartScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _loadCart();
+  }
+
+  Future<void> _loadCart() async {
+    final saved = await CartService.loadCart();
+    setState(() {
+      globalCart = saved;
+    });
+  }
+
   void _removeItem(int index) {
     setState(() {
       globalCart.removeAt(index);
     });
+    CartService.saveCart(globalCart);
   }
 
   @override
@@ -26,7 +41,7 @@ class _CartScreenState extends State<CartScreen> {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: globalCart.isEmpty 
+      body: globalCart.isEmpty
           ? const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -65,11 +80,13 @@ class _CartScreenState extends State<CartScreen> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
+                        final messenger = ScaffoldMessenger.of(context);
                         setState(() {
-                          globalCart.clear(); 
+                          globalCart.clear();
                         });
-                        ScaffoldMessenger.of(context).showSnackBar(
+                        await CartService.clearCart();
+                        messenger.showSnackBar(
                           const SnackBar(content: Text('Checkout successful!')),
                         );
                       },

@@ -6,10 +6,10 @@ class ProductCard extends StatelessWidget {
   final VoidCallback onTap;
 
   const ProductCard({
-    Key? key, 
-    required this.product, 
-    required this.onTap
-  }) : super(key: key);
+    super.key,
+    required this.product,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class ProductCard extends StatelessWidget {
                   product.imageUrl ?? '',
                   width: double.infinity,
                   fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => 
+                  errorBuilder: (context, error, stackTrace) =>
                       const Center(child: Icon(Icons.image_not_supported)),
                 ),
               ),

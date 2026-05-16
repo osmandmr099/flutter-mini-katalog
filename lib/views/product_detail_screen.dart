@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import '../models/product_model.dart';
+import '../services/cart_service.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final ProductModel product;
 
-  const ProductDetailScreen({Key? key, required this.product}) : super(key: key);
+  const ProductDetailScreen({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +37,12 @@ class ProductDetailScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  
+
                   Text(
                     product.title ?? 'Product Name',
                     style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
-                  
+
                   if (product.tagline != null && product.tagline!.isNotEmpty) ...[
                     const SizedBox(height: 4),
                     Text(
@@ -49,7 +50,7 @@ class ProductDetailScreen extends StatelessWidget {
                       style: const TextStyle(color: Colors.grey, fontSize: 16, fontStyle: FontStyle.italic),
                     ),
                   ],
-                  
+
                   const SizedBox(height: 16),
                   const Text(
                     'Description',
@@ -60,7 +61,7 @@ class ProductDetailScreen extends StatelessWidget {
                     product.description ?? 'No description available.',
                     style: const TextStyle(color: Colors.grey, fontSize: 14, height: 1.5),
                   ),
-                  
+
                   if (product.specs != null && product.specs!.isNotEmpty) ...[
                     const SizedBox(height: 24),
                     const Text(
@@ -69,20 +70,21 @@ class ProductDetailScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     ...product.specs!.entries.map((entry) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4.0),
-                      child: Row(
-                        children: [
-                          Text('${entry.key.toUpperCase()}: ', style: const TextStyle(fontWeight: FontWeight.bold)),
-                          Expanded(child: Text(entry.value.toString())),
-                        ],
-                      ),
-                    )).toList(),
+                          padding: const EdgeInsets.symmetric(vertical: 4.0),
+                          child: Row(
+                            children: [
+                              Text('${entry.key.toUpperCase()}: ',
+                                  style: const TextStyle(fontWeight: FontWeight.bold)),
+                              Expanded(child: Text(entry.value.toString())),
+                            ],
+                          ),
+                        )),
                   ],
                 ],
               ),
             ),
           ),
-          
+
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: SizedBox(
@@ -95,13 +97,18 @@ class ProductDetailScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                onPressed: () {
+                onPressed: () async {
+                  final messenger = ScaffoldMessenger.of(context);
                   globalCart.add(product);
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  await CartService.saveCart(globalCart);
+                  messenger.showSnackBar(
                     SnackBar(content: Text('${product.title} added to cart!')),
                   );
                 },
-                child: Text('Buy Now for \$${product.price}', style: const TextStyle(color: Colors.white, fontSize: 18)),
+                child: Text(
+                  'Buy Now for \$${product.price}',
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
+                ),
               ),
             ),
           ),

@@ -6,7 +6,7 @@ void main() {
 }
 
 class MiniKatalogApp extends StatelessWidget {
-  const MiniKatalogApp({Key? key}) : super(key: key);
+  const MiniKatalogApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +21,13 @@ class MiniKatalogApp extends StatelessWidget {
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.black),
           titleTextStyle: TextStyle(
-            color: Colors.black, 
-            fontSize: 20, 
-            fontWeight: FontWeight.bold
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
-      home: const HomeScreen(), 
+      home: const HomeScreen(),
     );
   }
 }

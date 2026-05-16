@@ -7,12 +7,12 @@ class CustomCard extends StatelessWidget {
   final VoidCallback? onRemove;
 
   const CustomCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.price,
     required this.imageUrl,
     this.onRemove,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +29,12 @@ class CustomCard extends StatelessWidget {
             width: 60,
             height: 60,
             fit: BoxFit.cover,
-            errorBuilder: (context, error, stackTrace) => 
+            errorBuilder: (context, error, stackTrace) =>
                 const Icon(Icons.broken_image),
           ),
         ),
         title: Text(
-          title, 
+          title,
           style: const TextStyle(fontWeight: FontWeight.bold),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,

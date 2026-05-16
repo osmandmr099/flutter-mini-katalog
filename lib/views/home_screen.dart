@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import '../models/product_model.dart';
 import '../services/api_service.dart';
 import '../components/product_card.dart';
-import 'product_detail_screen.dart'; 
+import 'product_detail_screen.dart';
 import 'cart_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -74,12 +74,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 width: double.infinity,
                 height: 80,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => 
+                errorBuilder: (context, error, stackTrace) =>
                     const SizedBox(height: 80, child: Center(child: Text('Failed to load banner'))),
               ),
             ),
           ),
-          
+
           Expanded(
             child: FutureBuilder<List<ProductModel>>(
               future: futureProducts,
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   padding: const EdgeInsets.all(16.0),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 0.75, 
+                    childAspectRatio: 0.75,
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                   ),
