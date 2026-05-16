@@ -1,34 +1,36 @@
-# Software Persona E-Commerce
+# Software Persona E-Commerce 🛍️
 
-A simple product catalog mobile app I built during a 5-day Flutter training. It pulls product data from an API and lets you browse products, view details, and add them to a cart.
-
----
-
-## Screenshots
-
-> *(Add your screenshots here)*
+Flutter ile geliştirdiğim basit bir mobil katalog uygulaması. API entegrasyonu ile ürünleri listeleyebilir, detaylarını görüntüleyebilir ve sepete ekleyebilirsiniz. Sepet verileri uygulama kapatılsa dahi korunur.
 
 ---
 
-## Features
+## 📱 Ekran Görüntüleri
 
-- Product listing with GridView
-- Search / filter by product name
-- Product detail page (description, specs, price)
-- Add to cart & remove from cart
-- Checkout simulation
+> *(Ekran görüntülerini buraya ekleyin)*
 
 ---
 
-## Tech Stack
+## ✨ Özellikler
+
+- API ile ürün listeleme (GridView)
+- Ürün arama ve filtreleme
+- Ürün detay sayfası (açıklama, özellikler, fiyat)
+- **Sepet yönetimi** — Sepete eklenen ürünler uygulama kapatılsa dahi korunur (SharedPreferences)
+- Cache sistemi ile performans optimizasyonu
+- Sayfa geçişleri (Navigator)
+
+---
+
+## 🛠️ Kullanılan Teknolojiler
 
 - Flutter `3.41.9`
 - Dart
-- Only uses built-in `material.dart` — no extra packages
+- Material Design
+- `shared_preferences: ^2.2.2`
 
 ---
 
-## Project Structure
+## 📁 Proje Yapısı
 
 ```
 lib/
@@ -36,7 +38,8 @@ lib/
 ├── models/
 │   └── product_model.dart
 ├── services/
-│   └── api_service.dart
+│   ├── api_service.dart
+│   └── cart_service.dart
 ├── components/
 │   ├── product_card.dart
 │   └── custom_card.dart
@@ -48,43 +51,68 @@ lib/
 
 ---
 
-## Getting Started
+## 🚀 Çalıştırma Adımları
 
-**Requirements:**
-- Flutter SDK 3.41.9
-- Android Studio (for emulator) or a physical Android device
-- VS Code or any IDE
+### Gereksinimler
 
-**Steps:**
+- Flutter SDK `3.41.9`
+- Dart SDK
+- Android Studio / VS Code
+- Android/iOS emulator veya fiziksel cihaz
 
+### Kurulum
+
+1. **Projeyi klonlayın:**
+   ```bash
+   git clone https://github.com/osmandmr099/software-persona-ecommerce.git
+   cd software-persona-ecommerce
+   ```
+
+2. **Bağımlılıkları yükleyin:**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Flutter doctor ile ortamı kontrol edin:**
+   ```bash
+   flutter doctor
+   ```
+
+4. **Uygulamayı çalıştırın:**
+   ```bash
+   flutter run
+   ```
+
+> Çalıştırmadan önce emülatörün açık veya cihazın bağlı olduğundan emin olun.
+
+### Build İşlemleri
+
+**Android APK oluşturmak için:**
 ```bash
-# 1. Clone the repo
-git clone https://github.com/osmandmr099/software-persona-ecommerce.git
-
-# 2. Go into the project folder
-cd software-persona-ecommerce
-
-# 3. Get dependencies
-flutter pub get
-
-# 4. Run the app
-flutter run
+flutter build apk --release
 ```
 
-> Make sure your emulator is running or a device is connected before `flutter run`.
+**iOS için:**
+```bash
+flutter build ios --release
+```
 
 ---
 
-## API
+## 🌐 API Entegrasyonu
 
-Product data is fetched from `https://wantapi.com/products.php` (used for educational/demo purposes only).
+Ürün verileri `https://wantapi.com/products.php` adresinden çekilmektedir (eğitim/demo amaçlıdır). Cache sistemi sayesinde veriler 10 dakika boyunca yerel olarak saklanır, gereksiz API istekleri önlenir.
 
-Alternative APIs you can swap in:
+Alternatif test API'leri:
 - [Fake Store API](https://fakestoreapi.com/products)
 - [DummyJSON](https://dummyjson.com/products)
 
 ---
 
-## Notes
+## 📚 Hakkında
 
-This was my first Flutter project — built it in a week as part of a training program. It's not perfect but it works! 🙂
+Bu proje, 5 günlük Flutter eğitimi kapsamında geliştirdiğim ilk Flutter uygulamasıdır. Temel widget yapısı, sayfa geçişleri, API'den veri çekme ve SharedPreferences ile state yönetimi konularını kapsamaktadır.
+
+## 📄 Lisans
+
+Bu proje özel kullanım içindir.
