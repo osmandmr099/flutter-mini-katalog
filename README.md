@@ -4,12 +4,6 @@ Flutter ile geliştirdiğim basit bir mobil katalog uygulaması. API entegrasyon
 
 ---
 
-## 📱 Ekran Görüntüleri
-
-> *(Ekran görüntülerini buraya ekleyin)*
-
----
-
 ## ✨ Özellikler
 
 - API ile ürün listeleme (GridView)
@@ -58,7 +52,7 @@ lib/
 - Flutter SDK `3.41.9`
 - Dart SDK
 - Android Studio / VS Code
-- Android/iOS emulator veya fiziksel cihaz
+- Android/iOS emulator
 
 ### Kurulum
 
@@ -101,11 +95,7 @@ flutter build ios --release
 
 ## 🌐 API Entegrasyonu
 
-Ürün verileri `https://wantapi.com/products.php` adresinden çekilmektedir (eğitim/demo amaçlıdır). Cache sistemi sayesinde veriler 10 dakika boyunca yerel olarak saklanır, gereksiz API istekleri önlenir.
-
-Alternatif test API'leri:
-- [Fake Store API](https://fakestoreapi.com/products)
-- [DummyJSON](https://dummyjson.com/products)
+Ürün verileri `https://wantapi.com/products.php` adresinden çekilmektedir.
 
 ---
 
